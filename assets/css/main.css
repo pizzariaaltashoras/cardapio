@@ -1,0 +1,467 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* RESET BÁSICO */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  font-family: "Poppins", sans-serif;
+  background-image: url("images/fundo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #ffffff;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* WRAPPER */
+#wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* MAIN */
+#main {
+  flex-grow: 1;
+  background: transparent;
+}
+
+#main > .inner {
+  max-width: 75em;
+  margin: 0 auto;
+  padding: 4em 3em;
+}
+
+/* SEÇÕES */
+#main > .inner > section {
+  padding: 5em 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#main > .inner > section:first-of-type {
+  border-top: none;
+}
+
+/* HEADERS */
+h1 {
+  font-size: 2.6em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* HEADER PRINCIPAL */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4em;
+}
+
+#header .logo {
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+#header .icons a {
+  margin-left: 1em;
+  opacity: 0.6;
+}
+
+#header .icons a:hover {
+  opacity: 1;
+}
+
+/* BANNER */
+#banner {
+  display: flex;
+  align-items: center;
+  gap: 3em;
+}
+
+#banner .content {
+  max-width: 530px;
+}
+
+#banner .image img {
+  max-width: 420px;
+  width: 115%;
+  border-radius: 9px;
+}
+
+/* POSTS / PROJETOS */
+.posts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3em;
+}
+
+.posts article {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2.5em;
+  border-radius: 10px;
+}
+
+/* REMOVE AS LINHAS DO TEMPLATE */
+.posts article:before,
+.posts article:after {
+  display: none !important;
+}
+
+/* BOTÃO */
+.button {
+  display: inline-block;
+  padding: 0.7em 1.6em;
+  border-radius: 6px;
+  border: 1px solid hsl(0, 0%, 100%);
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: #ffffff;
+  color: #0c1120;
+}
+
+/* SOBRE A AUTORA */
+.about-author {
+  text-align: center;
+}
+
+.about-author .author-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5em;
+}
+
+.about-author .author-content {
+  max-width: 570px;
+  margin: 0 auto;
+}
+
+/* SIDEBAR */
+#sidebar {
+  width: 300px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#sidebar .inner {
+  padding: 3em 2em;
+}
+
+/* MENU */
+#menu ul li {
+  margin-bottom: 0.8em;
+}
+
+#menu ul li a {
+  opacity: 0.85;
+}
+
+#menu ul li a:hover {
+  opacity: 1;
+}
+
+/* FOOTER */
+#footer {
+  margin-top: 3em;
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
+/* RESPONSIVO */
+@media screen and (max-width: 980px) {
+  #wrapper {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+  }
+
+  #banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .posts {
+    grid-template-columns: 1fr;
+  }
+}
+
+body {
+  background-image: url("../../images/fundo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#wrapper {
+  background: transparent !important;
+}
+
+
+#main {
+  background: transparent !important;
+}
+
+#main > .inner {
+  background: transparent !important;
+}
+
+
+#wrapper::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 10, 25, 0.75);
+  z-index: -1;
+}
+
+h1, h2 {
+  color: #ffaf02;
+  text-shadow: 0 0 12px rgba(79, 118, 177, 0.25);
+}
+
+header p {
+  color: #f6f9fc;
+}
+
+
+/* Bullet points – seção de problemas */
+.data-points {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  max-width: 520px;
+}
+
+.data-points li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 0.75rem;
+  color: #e6eef7;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Bullet customizado (ponto azul) */
+.data-points li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #006fee;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.data-points li::before {
+  content: "▸";
+  color: #f9faf9;
+}
+
+#method h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #6d88ff;
+  font-weight: 500;
+}
+
+.tools-list {
+  color: #e6eef7;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+/* Seção Projetos – respiro entre texto e cards */
+#projects p {
+  margin-bottom: 3rem;
+}
+
+/* Grid de projetos */
+.projects-grid {
+  margin-top: 1rem;
+}
+
+
+/* HERO / BANNER – espaçamento vertical */
+#banner h1 {
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
+
+#banner .hero-name {
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+#banner p {
+  margin-top: 0;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.hero-name {
+  color: #ff9900;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+
+/* Contato – bullet points clicáveis */
+.contact-points {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  max-width: 520px;
+}
+
+.contact-points li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 0.75rem;
+}
+
+.contact-points li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #9fd3ff;
+  font-size: 1.2rem;
+}
+
+.contact-points a {
+  color: #e6eef7;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-points a:hover {
+  color: #129ffd;
+}
+
+
+/* Botão WhatsApp – Hero */
+.btn-whatsapp {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #ffa600;
+  border-radius: 6px;
+  color: #ffa600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.btn-whatsapp:hover {
+  background-color: rgba(159, 211, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+
+#banner .image img {
+  max-width: 100%;
+  transform: translateX(10px);
+}
+
+@media (max-width: 980px) {
+  #banner .image img {
+    max-width: 100%;
+    transform: none;
+  }
+}
+
+
+/* Espaço no título do projeto */
+.posts article h3 {
+  margin-top: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Espaço no texto */
+.posts article p {
+  margin-top: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Espaço geral no card */
+.posts article {
+  padding: 1.5rem;
+}
+
+/* Container da imagem quadrado */
+.posts article .image {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* força quadrado */
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Imagem centralizada sem distorcer */
+.posts article .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

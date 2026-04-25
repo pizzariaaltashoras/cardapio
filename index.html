@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizzaria Altas Horas</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --fire: #e85d04;
+      --gold: #f4a800;
+      --cream: #fff8ee;
+      --dark: #1a0a00;
+      --card-bg: #211005;
+      --border: #3d1f00;
+      --text: #f0dfc0;
+      --muted: #b09070;
+      --price: #e85d04;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--dark);
+      background-image:
+        radial-gradient(ellipse at top, #3d1500 0%, transparent 60%),
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(255,100,0,0.02) 40px,
+          rgba(255,100,0,0.02) 41px
+        );
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% -20%, rgba(232,93,4,0.35) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .logo-badge {
+      display: inline-block;
+      border: 2px solid var(--gold);
+      border-radius: 4px;
+      padding: 0.2rem 1.2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--cream);
+      text-shadow: 0 0 40px rgba(232,93,4,0.6), 0 4px 20px rgba(0,0,0,0.8);
+      letter-spacing: -0.01em;
+    }
+
+    header h1 span {
+      display: block;
+      color: var(--fire);
+    }
+
+    .flame {
+      font-size: 1.6rem;
+      animation: flicker 1.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes flicker {
+      0%   { opacity: 1;   transform: scaleY(1) rotate(-2deg); }
+      50%  { opacity: 0.8; transform: scaleY(1.08) rotate(1deg); }
+      100% { opacity: 1;   transform: scaleY(0.95) rotate(-1deg); }
+    }
+
+    .tagline {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1.5rem auto;
+      max-width: 340px;
+      padding: 0 1rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
+    .divider span { color: var(--gold); font-size: 1rem; }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      text-align: center;
+      margin: 2.5rem 0 1.5rem;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title h2::before,
+    .section-title h2::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+      vertical-align: middle;
+    }
+
+    /* ── GRID ── */
+    .pizza-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(232,93,4,0.2);
+      border-color: rgba(244,168,0,0.35);
+    }
+
+    .card-emoji {
+      font-size: 2rem;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 6px rgba(232,93,4,0.4));
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+
+    .card-body { flex: 1; }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card-price {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--price);
+      white-space: nowrap;
+      font-family: 'Lato', sans-serif;
+      margin-top: 0.6rem;
+    }
+
+    /* ── SWEET SECTION ── */
+    .sweet .card-name { color: #f9c06a; }
+    .sweet .card-price { color: #f9c06a; }
+    .sweet .card:hover { box-shadow: 0 8px 30px rgba(249,192,106,0.2); border-color: rgba(249,192,106,0.35); }
+
+    /* ── DRINKS ── */
+    .drinks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0;
+    }
+
+    .drink-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .drink-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(244,168,0,0.3);
+    }
+
+    .drink-name {
+      font-size: 0.82rem;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .drink-price {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--fire);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      border-top: 1px solid var(--border);
+    }
+
+    footer strong { color: var(--gold); }
+
+    @media (max-width: 480px) {
+      .pizza-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-badge">Pizzaria</div>
+  <h1>Altas<span>Horas</span></h1>
+  <div class="flame">🔥</div>
+  <p class="tagline">Sabor que te acompanha até altas horas</p>
+</header>
+
+<main>
+
+  <!-- ── SABORES TRADICIONAIS ── -->
+  <div class="section-title">
+    <h2>Sabores Tradicionais</h2>
+  </div>
+
+  <div class="pizza-grid" id="tradicionais"></div>
+
+  <!-- ── PIZZAS DOCES ── -->
+  <div class="section-title">
+    <h2>🍫 Pizzas Doces</h2>
+  </div>
+
+  <div class="pizza-grid sweet" id="doces"></div>
+
+  <!-- ── BEBIDAS ── -->
+  <div class="section-title">
+    <h2>🥤 Bebidas</h2>
+  </div>
+
+  <div class="drinks-grid" id="bebidas"></div>
+
+</main>
+
+<footer>
+  <p><strong>Pizzaria Altas Horas</strong> &mdash; Peça já e aproveite!</p>
+</footer>
+
+<script>
+  const tradicionais = [
+    { name: "Calabresa", desc: "Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano", price: "R$ 49,90" },
+    { name: "Portuguesa", desc: "Molho de tomate, mussarela, presunto, ovo, azeitona e orégano", price: "R$ 47,90" },
+    { name: "Frango com Bacon", desc: "Molho de tomate, mussarela, frango desfiado, bacon, azeitona e cheddar", price: "R$ 49,90" },
+    { name: "4 Queijos", desc: "Molho de tomate, mussarela, parmesão, catupiry e provolone", price: "R$ 49,90" },
+    { name: "Bacon", desc: "Molho de tomate, mussarela, bacon e orégano", price: "R$ 47,90" },
+    { name: "Calabacon", desc: "Molho de tomate, mussarela, calabresa e bacon", price: "R$ 49,90" },
+    { name: "Calabresa Baiana", desc: "Molho de tomate, mussarela, calabresa picada, pimenta calabresa e orégano", price: "R$ 49,90" },
+    { name: "Calabresa Mineira", desc: "Molho de tomate, mussarela, calabresa fatiada, cebola, azeitona e orégano", price: "R$ 49,90" },
+    { name: "Frango com Catupiry", desc: "Molho de tomate, mussarela, frango, catupiry, azeitona e orégano", price: "R$ 49,90" },
+    { name: "Marguerita", desc: "Molho de tomate, mussarela, tomate e manjericão", price: "R$ 45,90" },
+    { name: "Mussarela", desc: "Molho de tomate, mussarela e orégano", price: "R$ 45,90" },
+    { name: "Milho com Bacon", desc: "Molho de tomate, mussarela, milho, bacon, catupiry e orégano", price: "R$ 45,90" },
+    { name: "Carne de Sol Especial", desc: "Molho de tomate, mussarela, calabresa, bacon, carne de sol e orégano", price: "R$ 53,00" },
+    { name: "Carne de Sol com Catupiry", desc: "Molho de tomate, mussarela, carne de sol, catupiry e orégano", price: "R$ 53,00" },
+    { name: "Presunto", desc: "Molho de tomate, mussarela, presunto e orégano", price: "R$ 45,90" },
+    { name: "Costela", desc: "Molho de tomate, mussarela, costela desfiada, cebola, catupiry e orégano", price: "R$ 55,00" },
+  ];
+
+  const doces = [
+    { name: "Chocolate", desc: "Mussarela e chocolate", price: "R$ 45,90" },
+    { name: "Banana com Canela", desc: "Mussarela, banana e canela", price: "R$ 45,90" },
+    { name: "Prestígio", desc: "Mussarela, chocolate e coco ralado", price: "R$ 47,00" },
+    { name: "Romeu e Julieta", desc: "Mussarela, goiabada e creme de leite", price: "R$ 45,90" },
+  ];
+
+  const bebidas = [
+    { name: "Coca-Cola 2L", price: "R$ 16,90" },
+    { name: "Coca-Cola Zero 2L", price: "R$ 17,00" },
+    { name: "Coca-Cola 1L", price: "R$ 11,90" },
+    { name: "Coca-Cola Zero 1L", price: "R$ 12,90" },
+    { name: "Guaraná 1L", price: "R$ 11,90" },
+    { name: "Coca-Cola Lata", price: "R$ 7,00" },
+    { name: "Coca-Cola Zero Lata", price: "R$ 7,90" },
+  ];
+
+  function renderPizzas(data, containerId) {
+    const el = document.getElementById(containerId);
+    el.innerHTML = data.map(p => `
+      <div class="card">
+        <div class="card-emoji">🍕</div>
+        <div class="card-body">
+          <div class="card-name">${p.name}</div>
+          <div class="card-desc">${p.desc}</div>
+          <div class="card-price">${p.price}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderDrinks(data) {
+    const el = document.getElementById('bebidas');
+    el.innerHTML = data.map(d => `
+      <div class="drink-card">
+        <span class="drink-name">🥤 ${d.name}</span>
+        <span class="drink-price">${d.price}</span>
+      </div>
+    `).join('');
+  }
+
+  renderPizzas(tradicionais, 'tradicionais');
+  renderPizzas(doces, 'doces');
+  renderDrinks(bebidas);
+</script>
+
+</body>
+</html>
